@@ -13,7 +13,7 @@ public class Item {
     }
 
     public double getValorTotal(){
-        return 0;
+        return (this.quantidade * this.valorUnitario);
     }
     
     public String getTipo() {

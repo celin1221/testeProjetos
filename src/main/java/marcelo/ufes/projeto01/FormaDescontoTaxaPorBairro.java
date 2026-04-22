@@ -5,12 +5,27 @@ public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega{
     
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        double desconto = 0;
+        if(bairroCliente.equals("Centro")){
+            desconto = 2.0;
+        }
+        else if(bairroCliente.equals("Bela Vista")){
+            desconto = 3.0;
+        }
+        else if (bairroCliente.equals("Cidade Maravilhosa")) {
+            desconto = 1.5;
+        }
+        
+        return new CupomDescontoEntrega("DescontoTaxaPorBairro", desconto);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.bairroCliente = pedido.getCliente().getBairro();
+        if(bairroCliente.equals("Centro") || bairroCliente.equals("Bela Vista") || bairroCliente.equals("Cidade Maravilhosa")){
+            return true;
+        }
+        return false;
     }
 
 }

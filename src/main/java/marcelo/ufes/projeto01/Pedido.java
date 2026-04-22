@@ -1,6 +1,7 @@
 package marcelo.ufes.projeto01;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
+import java.util.*;
 
 public class Pedido {
     private double taxaEntrega = 10.0;
@@ -10,15 +11,24 @@ public class Pedido {
     
     public Pedido(LocalDate data, Cliente cliente){
         this.cliente = cliente;
+        this.itens = new ArrayList<>();
+        this.cuponsDescontoEntrega = new ArrayList<>();
     }
     
     public void adicionarItem(Item item){
-        
+        this.itens.add(item);
     }
     
     public double getValorPedido(){
-        //implementar
-        return 0;
+        if(this.itens.isEmpty()){
+            throw new NullPointerException("A lista de pedidos está vazia!");
+        }
+        
+        double valorPedido = 0;
+        for(Item item : itens){
+            valorPedido+=item.getValorTotal();
+        }
+        return valorPedido;
     }
     
     public Cliente getCliente(){
@@ -33,18 +43,21 @@ public class Pedido {
         return this.taxaEntrega;
     }
     
-    public void aplicarDesconto(IFormaDescontoTaxaEntrega desconto){
-        
+    public void adicionarCupom(CupomDescontoEntrega cupom){
+        cuponsDescontoEntrega.add(cupom);
     }
     
     public double getDescontoConcedido(){
-        //implementar
-        return 0;
+        double valorTotalDesconto = 0;
+        for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
+            double valorDesconto = cupom.getValorDesconto();
+            valorTotalDesconto+=valorDesconto;
+        }
+        return valorTotalDesconto;
     }
     
     public List<CupomDescontoEntrega> getCuponsDescontoEntrega(){
-        //implementar
-        return null;
+        return Collections.unmodifiableList(cuponsDescontoEntrega);
     }
     
     @Override

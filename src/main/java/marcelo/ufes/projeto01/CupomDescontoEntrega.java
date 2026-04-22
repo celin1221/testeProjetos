@@ -9,7 +9,7 @@ public class CupomDescontoEntrega {
     }
 
     public String getNomeMetodo() {
-        return nomeMetodo;
+        return nomeMetodo;  
     }
 
     public double getValorDesconto() {
@@ -18,7 +18,7 @@ public class CupomDescontoEntrega {
     
     @Override
     public String toString(){
-        return("Cupom: " + this.nomeMetodo);
+        return("Cupom: " + this.nomeMetodo + "\tR$: " + this.valorDesconto);
     }
 
 }

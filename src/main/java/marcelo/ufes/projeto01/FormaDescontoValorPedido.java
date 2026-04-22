@@ -10,12 +10,16 @@ public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
 
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new CupomDescontoEntrega("DescontoValorPedido", VALOR_DESCONTO);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(pedido.getDescontoConcedido() > 10.0){
+            return false;
+        }
+        
+        return true;
     }
 
 }
