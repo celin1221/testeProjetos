@@ -7,12 +7,11 @@ public class Pedido {
     private double taxaEntrega = 10.0;
     Cliente cliente;
     List<Item> itens;
-    List<CupomDescontoEntrega> cuponsDescontoEntrega;
     
     public Pedido(LocalDate data, Cliente cliente){
         this.cliente = cliente;
         this.itens = new ArrayList<>();
-        this.cuponsDescontoEntrega = new ArrayList<>();
+        
     }
     
     public void adicionarItem(Item item){
@@ -44,20 +43,11 @@ public class Pedido {
     }
     
     public void adicionarCupom(CupomDescontoEntrega cupom){
-        cuponsDescontoEntrega.add(cupom);
+        
     }
     
     public double getDescontoConcedido(){
-        double valorTotalDesconto = 0;
-        for(CupomDescontoEntrega cupom : cuponsDescontoEntrega){
-            double valorDesconto = cupom.getValorDesconto();
-            valorTotalDesconto+=valorDesconto;
-        }
-        return valorTotalDesconto;
-    }
-    
-    public List<CupomDescontoEntrega> getCuponsDescontoEntrega(){
-        return Collections.unmodifiableList(cuponsDescontoEntrega);
+        return 0;
     }
     
     @Override
