@@ -1,4 +1,3 @@
-
 package marcelo.ufes.projeto01;
 
 import java.io.BufferedReader;
@@ -15,6 +14,27 @@ public class Projeto01 {
         
         Cliente cliente = new Cliente("Henrique", "Ouro", 0, "Rua tal", "Bela Vista", "Alegre");
         Pedido pedido1 = new Pedido(LocalDate.now(), cliente);
+        
+        Item item1 = new Item("Livro", 2, 120.0, "Educação");
+        Item item2 = new Item("Tablet Samsung ", 1, 320.0, "Educação");
+        pedido1.adicionarItem(item1);
+        pedido1.adicionarItem(item2);
+        
+        PedidoService pedidoService = new PedidoService(new CupomDescontoService());
+        System.out.println("Valor do Pedido: " + pedido1.getValorPedido());
+        
+        System.out.println(pedidoService.aplicarCupom(pedido1, "NATAL10"));
+        System.out.println("Valor do Pedido: " + pedido1.calcularValorFinal());
+        
+        System.out.println(pedidoService.aplicarCupom(pedido1, "DESC10"));
+        System.out.println("Valor do Pedido: " + pedido1.calcularValorFinal());
+        
+        System.out.println(pedidoService.aplicarCupom(pedido1, "DESC30"));
+        System.out.println("Valor do Pedido: " + pedido1.calcularValorFinal());
+        
+        System.out.println(pedidoService.aplicarCupom(pedido1, "NATAL10"));
+        System.out.println("Valor do Pedido: " + pedido1.calcularValorFinal());
+        
         
         while(flag){
             /*
@@ -63,16 +83,6 @@ public class Projeto01 {
             valorItem = Double.parseDouble(br.readLine());
             */
         }
-        
-        Item item1 = new Item("Livro", 1, 120.0, "Educação");
-        Item item2 = new Item("Tablet Samsung ", 1, 3200.0, "Educação");
-        pedido1.adicionarItem(item1);
-        pedido1.adicionarItem(item2);
-        
-        CalculadoraDeDescontoService calculadoraDeDescontoService = new CalculadoraDeDescontoService();
-        calculadoraDeDescontoService.CalcularDesconto(pedido1);
-        
-        
         //calculadoraDeDescontoService.imprimirCupons(pedido1);
     }
 }

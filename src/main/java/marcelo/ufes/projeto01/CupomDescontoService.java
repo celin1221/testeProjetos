@@ -1,15 +1,13 @@
 package marcelo.ufes.projeto01;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CupomDescontoService {
     private List<CupomDesconto> cuponsDisponiveis;
 
     public CupomDescontoService() {
-        cuponsDisponiveis = new ArrayList<>();
+        this.cuponsDisponiveis = RepositorioCupomMemoria.criarCupons();
     }
     
     public void addCupom(CupomDesconto cupom){
@@ -28,5 +26,30 @@ public class CupomDescontoService {
                 c.setDataFim(dataFim);
             }
         }
+    }
+    
+    public CupomDesconto buscarPorCodigo(String codCupom){
+        for (CupomDesconto cupom : cuponsDisponiveis) {
+            if (cupom.getCodCupom().equals(codCupom)) {
+                return cupom;
+            }
+        }
+        return null;
+    }
+    
+    public CupomDesconto obterCupomValido(String codCupom) {
+        CupomDesconto cupom = buscarPorCodigo(codCupom);
+        LocalDateTime agora = LocalDateTime.now();
+
+        if (cupom == null) {
+            return null;
+        }
+        
+        if (agora.isBefore(cupom.getDataInicio()) || 
+            agora.isAfter(cupom.getDataFim())) {
+            return null;
+        }
+
+        return cupom;
     }
 }

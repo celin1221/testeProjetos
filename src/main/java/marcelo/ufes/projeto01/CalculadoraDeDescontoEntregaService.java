@@ -3,10 +3,10 @@ package marcelo.ufes.projeto01;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculadoraDeDescontoService {
+public class CalculadoraDeDescontoEntregaService {
     private List<IFormaDescontoTaxaEntrega> metodosDeDesconto;
     
-    public CalculadoraDeDescontoService(){
+    public CalculadoraDeDescontoEntregaService(){
         this.metodosDeDesconto = new ArrayList<>();
         metodosDeDesconto.add(new FormaDescontoTaxaPorBairro());
         metodosDeDesconto.add(new FormaDescontoTaxaPorTipoCliente());
