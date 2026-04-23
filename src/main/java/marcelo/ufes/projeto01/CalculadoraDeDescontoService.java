@@ -30,6 +30,7 @@ public class CalculadoraDeDescontoService {
         }
     }
     
+    /*
     public void imprimirCupons(Pedido pedido){
         List<CupomDescontoEntrega> cupons = pedido.getCuponsDescontoEntrega();
         
@@ -42,5 +43,6 @@ public class CalculadoraDeDescontoService {
             
         }
     }
+*/
 
 }

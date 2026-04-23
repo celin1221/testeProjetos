@@ -71,6 +71,8 @@ public class Projeto01 {
         
         CalculadoraDeDescontoService calculadoraDeDescontoService = new CalculadoraDeDescontoService();
         calculadoraDeDescontoService.CalcularDesconto(pedido1);
-        calculadoraDeDescontoService.imprimirCupons(pedido1);
+        
+        
+        //calculadoraDeDescontoService.imprimirCupons(pedido1);
     }
 }
